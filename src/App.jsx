@@ -1,17 +1,8 @@
 import styled from "styled-components";
 
 import GlobalStyles from "./styles/GlobalStyles.js";
-
-const H1 = styled.h1`
-    font-size: 30px;
-    font-weight: 600;
-    background-color: var(--color-brand-500);
-`;
-
-const Button = styled.button`
-    font-size: 1.4rem;
-    color: var(--color-indigo-700);
-`;
+import Heading from "./ui/Heading.jsx";
+import Button from "./ui/Button.jsx";
 
 const StyledApp = styled.main`
     background-color: orangered;
@@ -23,7 +14,9 @@ function App() {
         <>
             <GlobalStyles />
             <StyledApp>
-                <H1>The Wild Oasis</H1>
+                <Heading type={"h1"}>The Wild Oasis</Heading>
+                <Heading as={"h2"}>Check in and out</Heading>
+                <Heading as={"h3"}>Form</Heading>
                 <Button>efew fwe fw</Button>
             </StyledApp>
         </>
