@@ -3,6 +3,7 @@ import styled from "styled-components";
 import GlobalStyles from "./styles/GlobalStyles.js";
 import Heading from "./ui/Heading.jsx";
 import Button from "./ui/Button.jsx";
+import Input from "./ui/Input.jsx";
 
 const StyledApp = styled.main`
     background-color: orangered;
@@ -16,8 +17,11 @@ function App() {
             <StyledApp>
                 <Heading type={"h1"}>The Wild Oasis</Heading>
                 <Heading as={"h2"}>Check in and out</Heading>
-                <Heading as={"h3"}>Form</Heading>
                 <Button>efew fwe fw</Button>
+                <Button>efew fwe fw</Button>
+                <Heading as={"h3"}>Form</Heading>
+                <Input type={"number"} placeholder={"Number of guests"} />
+                <Input type={"number"} placeholder={"Number of guests"} />
             </StyledApp>
         </>
     );

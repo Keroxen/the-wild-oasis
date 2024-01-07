@@ -50,7 +50,16 @@ import styled, { css } from "styled-components";
 
 const Button = styled.button`
     font-size: 1.4rem;
-    color: var(--color-indigo-700);
+    background-color: var(--color-brand-700);
+    padding: 12px 16px;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    
+    &:hover {
+        background-color: var(--color-brand-800);
+    }
 `;
 
 export default Button;
