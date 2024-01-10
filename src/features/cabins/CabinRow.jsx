@@ -1,9 +1,12 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { HiPencil, HiTrash } from "react-icons/hi";
+import { HiSquare2Stack } from "react-icons/hi2";
 
 import { formatCurrency } from "../../utils/helpers.js";
 import CreateCabinForm from "./CreateCabinForm.jsx";
 import { useDeleteCabin } from "./useDeleteCabin.js";
+import { useCreateCabin } from "./useCreateCabin.js";
 
 const TableRow = styled.div`
     display: grid;
@@ -45,11 +48,20 @@ const Discount = styled.div`
 `;
 
 const CabinRow = ({ cabin }) => {
-    const { id: cabinId, name, maxCapacity, regularPrice, discount, image } = cabin;
+    const { id: cabinId, name, maxCapacity, regularPrice, discount, image, description } = cabin;
 
     const [showForm, setShowForm] = useState(false);
 
     const { isDeleting, deleteCabin } = useDeleteCabin();
+
+    const { isCreating, createCabin } = useCreateCabin();
+
+    const handleDuplicateCabin = () => {
+        createCabin({
+            name: `Copy of ${name}`,
+            maxCapacity, regularPrice, discount, image, description
+        })
+    }
 
     return (
         <>
@@ -59,8 +71,11 @@ const CabinRow = ({ cabin }) => {
                 <div>Fits up to {maxCapacity} guests</div>
                 <Price>{formatCurrency(regularPrice)}</Price>
                 {discount ? (<Discount>{formatCurrency(discount)}</Discount>) : <span>&mdash;</span>}
-                <button onClick={() => setShowForm(!showForm)}>Edit</button>
-                <button onClick={() => deleteCabin(cabinId)} disabled={isDeleting}>Delete</button>
+                <div>
+                    <button onClick={handleDuplicateCabin} disabled={isCreating}><HiSquare2Stack /></button>
+                    <button onClick={() => setShowForm(!showForm)}><HiPencil /></button>
+                    <button onClick={() => deleteCabin(cabinId)} disabled={isDeleting}><HiTrash /></button>
+                </div>
             </TableRow>
             {showForm && <CreateCabinForm cabinToEdit={cabin} />}
         </>

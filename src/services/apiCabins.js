@@ -14,9 +14,7 @@ export async function getCabins() {
 }
 
 export async function createEditCabin(newCabin, id) {
-    console.log(newCabin, id)
     const hasImagePath = newCabin.image?.startsWith?.(supabaseUrl);
-
     const imageName = `${Math.random()}-${newCabin.image.name}`.replaceAll("/", "");
     const imagePath = hasImagePath ? newCabin.image : `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
 
@@ -47,6 +45,10 @@ export async function createEditCabin(newCabin, id) {
     }
 
     // 2. Upload the image to supabase using standard upload
+    if (hasImagePath) {
+        return data;
+    }
+
     const { error: storageError } = await supabase.storage.from('cabin-images').upload(imageName, newCabin.image)
 
     // 3. Delete the cabin if there was an error

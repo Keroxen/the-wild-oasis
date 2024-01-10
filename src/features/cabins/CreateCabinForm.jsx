@@ -17,10 +17,10 @@ function CreateCabinForm({ cabinToEdit = {} }) {
     const { id: editId, ...editValues } = cabinToEdit;
     const isEditSession = Boolean(editId);
 
-    const { errors } = formState;
     const { register, handleSubmit, reset, getValues, formState } = useForm({
         defaultValues: isEditSession ? editValues : {}
     });
+    const { errors } = formState;
 
     const onSubmit = (data) => {
         const image = typeof data.image === "string" ? data.image : data.image[0];
@@ -34,7 +34,6 @@ function CreateCabinForm({ cabinToEdit = {} }) {
                 onSuccess: () => reset()
             });
         }
-
     }
 
     const onError = (error) => {
