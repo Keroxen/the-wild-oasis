@@ -7,6 +7,7 @@ import CreateCabinForm from "./CreateCabinForm.jsx";
 import { useDeleteCabin } from "./useDeleteCabin.js";
 import { useCreateCabin } from "./useCreateCabin.js";
 import Modal from "../../ui/Modal.jsx";
+import ConfirmDelete from "../../ui/ConfirmDelete.jsx";
 
 const TableRow = styled.div`
     display: grid;
@@ -79,9 +80,14 @@ const CabinRow = ({ cabin }) => {
                         <CreateCabinForm cabinToEdit={cabin} />
                     </Modal.Window>
 
+                    <Modal.Open>
+                        <button disabled={isDeleting}><HiTrash /></button>
+                    </Modal.Open>
+                    <Modal.Window>
+                        <ConfirmDelete resourceName={"cabins"} disabled={isDeleting}
+                                       onConfirm={() => deleteCabin(cabinId)} />
+                    </Modal.Window>
                 </Modal>
-
-                <button onClick={() => deleteCabin(cabinId)} disabled={isDeleting}><HiTrash /></button>
 
             </div>
         </TableRow>
