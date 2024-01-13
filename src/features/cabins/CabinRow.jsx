@@ -82,7 +82,7 @@ const CabinRow = ({ cabin }) => {
                 </Modal>
 
                 <button onClick={() => deleteCabin(cabinId)} disabled={isDeleting}><HiTrash /></button>
-                
+
             </div>
         </TableRow>
     );
