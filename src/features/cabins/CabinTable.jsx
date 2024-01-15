@@ -5,6 +5,7 @@ import CabinRow from "./CabinRow.jsx";
 import { useCabins } from "./useCabins.js";
 import Table from "../../ui/Table.jsx";
 import Menus from "../../ui/Menus.jsx";
+import Empty from "../../ui/Empty.jsx";
 
 const CabinTable = () => {
     const { isLoading, cabins } = useCabins();
@@ -13,6 +14,11 @@ const CabinTable = () => {
     if (isLoading) {
         return <Spinner />
     }
+
+    if (!cabins.length) {
+        return <Empty resourceName={"bookings"} />
+    }
+
     // 1) filtering
     const filterValue = searchParams.get("discount") || "all";
     let filteredCabins;
