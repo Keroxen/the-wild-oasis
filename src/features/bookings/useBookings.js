@@ -13,9 +13,14 @@ export function useBookings() {
         value: filterValue
     };
 
+    // SORT
+    const sortByRaw = searchParams.get("sortBy") || "startDate-desc";
+    const [field, direction] = sortByRaw.split("-");
+    const sortBy = { field, direction };
+
     const { isLoading, data: bookings, error } = useQuery({
-        queryKey: ['bookings', filter], // fetches the data when filter changes, like a dep array
-        queryFn: () => getBookings({ filter })
+        queryKey: ['bookings', filter, sortBy], // fetches the data when filter changes, like a dep array
+        queryFn: () => getBookings({ filter, sortBy })
     })
 
     return { isLoading, bookings, error }
