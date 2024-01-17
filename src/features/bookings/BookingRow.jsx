@@ -7,6 +7,7 @@ import Tag from "../../ui/Tag.jsx";
 import Table from "../../ui/Table.jsx";
 import { formatCurrency, formatDistanceFromNow } from "../../utils/helpers.js";
 import Menus from "../../ui/Menus.jsx";
+import { HiArrowDownOnSquare } from "react-icons/hi2";
 
 const Cabin = styled.div`
     font-size: 1.6rem;
@@ -88,6 +89,9 @@ function BookingRow({
                 <Menus.List id={bookingId}>
                     <Menus.Button icon={<HiEye />} onClick={() => navigate(`/bookings/${bookingId}`)}>See
                         details</Menus.Button>
+                    {status === "unconfirmed" &&
+                        <Menus.Button icon={<HiArrowDownOnSquare />} onClick={() => navigate(`/checkin/${bookingId}`)}>Check
+                            in</Menus.Button>}
                 </Menus.List>
             </Menus.Menu>
         </Table.Row>
