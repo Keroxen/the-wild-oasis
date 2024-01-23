@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import Heading from "../../ui/Heading.jsx";
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+
+import Heading from "../../ui/Heading.jsx";
 import { useDarkMode } from "../../context/DarkModeContext.jsx";
 
 const ChartBox = styled.div`
