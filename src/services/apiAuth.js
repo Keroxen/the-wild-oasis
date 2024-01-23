@@ -39,8 +39,6 @@ export const getCurrentUser = async () => {
     // it is more secure to get the user from supabase again instead of session
     const { data, error } = await supabase.auth.getUser();
 
-    console.log(data);
-
     if (error) {
         throw new Error(error.message);
     }
